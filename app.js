@@ -25,3 +25,4 @@ app.listen(3000, () => {
 
 // routing
 app.use('/api/product', require('./routes/product'));
+app.use('/api/employee', require('./routes/employee'));
