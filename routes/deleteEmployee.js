@@ -14,6 +14,7 @@ var connection = mysql.createConnection({
 exports.getProducts = (req, res, next) => {
   connection.connect(function(err) {
     let i = 0;
+      let i2 = 0;
     let products = [];
     if (err) throw err;
     connection.query("INSERT INTO PRODUCTS VALUES"+(values), (err, rows, fields) => {
