@@ -25,3 +25,5 @@ app.listen(3000, () => {
 
 // routing
 app.use('/api/product', require('./routes/product'));
+
+app.use('/api/product/delete', require('./routes/productDelete'));
