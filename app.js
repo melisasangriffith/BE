@@ -29,3 +29,5 @@ app.use('/api/product', require('./routes/product'));
 app.use('/api/employee', require('./routes/employee'));
 
 app.use('/api/product/delete', require('./routes/productDelete'));
+
+app.use('/api/debtors', require('./routes/debtors'));
