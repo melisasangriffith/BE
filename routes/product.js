@@ -24,7 +24,8 @@ exports.getProducts = (req, res, next) => {
           name: JSON.parse(JSON.stringify(rows[i].name)),
           acquisition_price: JSON.parse(JSON.stringify(rows[i].acquisitionPrice)),
           sale_price: JSON.parse(JSON.stringify(rows[i].salePrice)),
-          type: JSON.parse(JSON.stringify(rows[i].type))
+          type: JSON.parse(JSON.stringify(rows[i].type)),
+          stock: JSON.parse(JSON.stringify(rows[i].stock))
         }
         i++;
       }
@@ -35,5 +36,28 @@ exports.getProducts = (req, res, next) => {
 }
 
 router.get('/retrieve_products', this.getProducts);
+
+exports.getStocks = (req, res, next) => {
+  connection.connect(function(err) {
+    let i = 0;
+    let stocks = [];
+    if (err) throw err;
+    connection.query("SELECT idProduct, name, stock FROM Product", (err, rows, fields) => {
+      if (err) throw err;
+      while(rows[i] != null) {
+        stocks[i] = {
+          id: JSON.parse(JSON.stringify(rows[i].idProduct)),
+          name: JSON.parse(JSON.stringify(rows[i].name)),
+          stock: JSON.parse(JSON.stringify(rows[i].stock))
+        }
+        i++;
+      }
+      res.json(Object.assign(stocks));
+      console.log(stocks);
+    });
+  });
+}
+
+router.get('/retrieve_stocks', this.getStocks);
 
 module.exports = router;
